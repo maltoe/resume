@@ -1,0 +1,95 @@
+<div id="page-wrap">
+  <header class="two-columns">
+    <div id="photo" class="left-column no-mobile">
+      <img src="{{ gravatar contact.email }}">
+    </div>
+    <div id="name-contacts-wrap" class="right-column">
+      <h1 id="name">{{ name }}</h1>
+      <div id="contacts">
+        <div class="contact-container">
+          <a id="contact-github" class="contact" href="http://github.com/{{ contact.github }}">
+            github.com/{{ contact.github }}
+          </a>
+        </div>
+        <div class="contact-container">
+          <a id="contact-email" class="contact" href="{{ contact.email }}">
+              {{ contact.email }} 
+          </a>
+        </div>
+        <div class="contact-container">
+          <p id="contact-cell" class="contact">
+            {{ contact.cell }}
+          </p>
+        </div>
+        <div class="contact-container">
+          <p id="contact-location" class="contact">
+            {{ contact.location }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <p id="objective">{{ objective }}</p>
+
+  <div class="two-columns">
+    <div class="left-column">
+      <h2>Work Experience</h2>
+    </div>
+    <div class="right-column border-left">
+      {{#each experience }}
+        <div class="experience">
+          <p class="time-line">
+            <span class="experience-period-start">{{{ period.start }}}</span>
+            &middot;&middot;&middot;
+            <span class="experience-period-end">{{{ period.end }}}</span>
+          </p>
+          <h3><a href="{{ employer.href }}">{{{ employer.name }}}</a>, {{{ title }}}</h3>
+          <ul>
+            {{#each items }}
+            <li>{{{ this }}}</li>
+            {{/each}}
+          </ul>
+        </div>
+      {{/each}}
+    </div>
+  </div>
+
+  <div class="two-columns">
+    <div class="left-column">
+      <h2>Skills &amp; special knowledge</h2>
+    </div>
+    <div class="right-column border-left">
+      <ul id="language-graph">
+        {{#each skills.languages }}
+        <li id="language-{{ selector }}">
+          <span class="language-name">{{ name }}</span> <span class="language-years">({{ years }} years)</span>
+        </li>
+        {{/each}}
+      </ul>
+      <ul>
+        {{#each skills.items}}
+        <li>{{{ this }}}</li>
+        {{/each}}
+    </div>
+  </div>
+
+  <div class="two-columns">
+    <div class="left-column">
+      <h2>Education</h2>
+    </div>
+    <div class="right-column border-left">
+      <p class="time-line">{{{ education.year }}}</p>
+      <h3><a href="{{ education.university.href }}">{{{ education.university.name }}}</a></h3>
+      <ul>
+        <li>{{{ education.degree }}}</li>
+        <li>Thesis: <a href="{{ education.thesis.href }}">{{{ education.thesis.title }}}</a></li>
+      </ul>
+    </div>
+  </div>
+  
+  <footer>
+    <!-- TODO -->
+  </footer>
+
+</div> <!-- #page-wrap -->

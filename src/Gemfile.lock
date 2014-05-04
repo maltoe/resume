@@ -1,0 +1,49 @@
+GIT
+  remote: https://github.com/robb1e/sprockets-standalone
+  revision: 5576b4ead6d6f24bd7f6445eb8e9d008a0c99b7b
+  specs:
+    sprockets-standalone (1.2.0)
+      rake
+      sprockets (~> 2.0)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    execjs (2.0.2)
+    gemoji (1.5.0)
+    handlebars_assets (0.14.1)
+      execjs (>= 1.2.9)
+      sprockets (>= 2.0.3)
+      tilt
+    hike (1.2.3)
+    json (1.8.1)
+    libv8 (3.16.14.3)
+    multi_json (1.9.3)
+    rack (1.5.2)
+    rake (10.3.1)
+    ref (1.0.5)
+    sass (3.3.6)
+    sprockets (2.12.1)
+      hike (~> 1.2)
+      multi_json (~> 1.0)
+      rack (~> 1.0)
+      tilt (~> 1.1, != 1.3.0)
+    therubyracer (0.12.0)
+      libv8 (~> 3.16.14.0)
+      ref
+    tilt (1.4.1)
+    uglifier (2.5.0)
+      execjs (>= 0.3.0)
+      json (>= 1.8.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  gemoji
+  handlebars_assets
+  rake
+  sass
+  sprockets-standalone!
+  therubyracer
+  uglifier

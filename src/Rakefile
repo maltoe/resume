@@ -1,0 +1,119 @@
+require 'logger'
+require 'sprockets/standalone'
+require 'fileutils'
+require 'v8'
+require 'securerandom'
+require 'yaml'
+require 'tilt'
+require 'gemoji'
+require 'handlebars_assets'
+require 'json'
+
+module Resume
+  class Cipher
+    attr_reader :key
+
+    def self.global
+      @@global_instance = Cipher.new if !defined?(@@global_instance)
+      @@global_instance
+    end
+
+    def initialize(key = SecureRandom.hex(16))
+      @key = key
+      Logger.new($stdout).info "Cipher instance using key: #{key}"
+    end
+
+    def encrypt(data, salt = "")
+      Cipher.v8.eval("CryptoJS.AES.encrypt('#{data}', '#{key}#{salt}')")
+    end
+
+  private
+
+    def self.v8
+      if !defined? @@v8
+        @@v8 = V8::Context.new
+        @@v8.load File.expand_path('../vendor/js/cryptojs-aes.min.js', __FILE__)
+      end
+      @@v8
+    end
+  end
+
+  class ERBTemplate < Tilt::ERBTemplate
+    def evaluate(scope, locals, &block)
+      super(scope, locals.merge(globals), &block)
+    end
+
+  private
+
+    def globals
+      if !@globals
+        data     = YAML.load_file(File.expand_path('../data/resume.yml', __FILE__))
+        cipher   = data.has_key?('key') ? Cipher.new(data['key']) : Cipher.global
+        @globals = { cipher: cipher, data: cipher.encrypt(data.to_json) }
+      end
+      @globals
+    end
+  end
+
+  class RakeTask < ::Sprockets::Standalone::RakeTask
+    def initialize(name)
+      super(name) do |task, sprockets|
+        task.assets  = %w(js/resume.js css/style.css resume.html emoji/email.png emoji/octocat.png emoji/iphone.png emoji/house.png)
+        task.sources = %w(assets vendor) + [Emoji.images_path]
+        task.digest  = false
+
+        yield task, sprockets if block_given?
+      end
+    end
+  end
+
+  class DebugERBTemplate < ERBTemplate
+  private
+    def globals
+      @globals ||= super.merge({ :env => :debug })
+    end
+  end
+
+  class DebugTask < RakeTask
+    OUTPUT_DIR = File.expand_path('../build', __FILE__)
+
+    def initialize
+      super(:debug) do |task, sprockets|
+        task.output   = OUTPUT_DIR
+        task.compress = false
+        sprockets.register_engine '.erb', DebugERBTemplate
+      end
+    end
+  end
+
+  class ReleaseERBTemplate < ERBTemplate
+  private
+    def globals
+      @globals ||= super.merge({ :env => :release })
+    end
+  end
+
+  class ReleaseTask < RakeTask
+    OUTPUT_DIR = File.expand_path('../..', __FILE__)
+
+    def initialize
+      super(:release) do |task, sprockets|
+        task.output              = OUTPUT_DIR
+        #task.compress = true
+        sprockets.js_compressor  = :uglifier
+        sprockets.css_compressor = :sass
+        sprockets.register_engine '.erb', ReleaseERBTemplate
+      end
+    end
+  end
+end
+
+Resume::DebugTask.new
+Resume::ReleaseTask.new
+
+task :clobber do
+  FileUtils.rm_rf Resume::DebugTask::OUTPUT_DIR
+  FileUtils.rm_rf Resume::DebugTask::OUTPUT_DIR
+end
+
+task :default => ['debug:clobber', 'debug:compile']

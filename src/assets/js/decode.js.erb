@@ -1,0 +1,79 @@
+function decipher(s, key) {
+  try {
+    var decrypted = CryptoJS.AES.decrypt(s, key).toString(CryptoJS.enc.Utf8);
+    return (decrypted.length > 0) ? decrypted : null;
+  } catch(err) {
+    return null;
+  }
+}
+
+function check_key(key) {
+  <% salt  = SecureRandom.hex(16) %>
+  <% token = SecureRandom.hex(16) %>
+  var token     = '<%= token %>';
+  var secret    = '<%= cipher.encrypt(token, salt) %>';
+  var decrypted = decipher(secret, key + '<%= salt %>');
+  return (token == decrypted);
+}
+
+function decode(key) {
+  $("#decoding-info").html("Decoding...");
+
+  var decrypted = decipher('<%= data %>', key);
+  if(!decrypted)
+    return false;
+
+  var json = JSON.parse(decrypted);
+
+  var html = HandlebarsTemplates['js/content'](json);
+  $("#content").html(html);
+
+  update_language_graph(json['skills']['languages'])
+
+  return true;
+}
+
+function hide_info() {
+  $('#decoding-info').animate({ 'opacity': 0 }, 200, 'ease-out', function() {
+    $('#decoding-overlay').hide();
+  });
+}
+
+function no_access() {
+  $("#decoding-info").html("No access.");
+}
+
+function decoding_failed() {
+  $("#decoding-info").html("Decoding failure.");
+}
+
+Zepto(function($) {
+  Handlebars.registerHelper('gravatar', function(email) {
+      return 'http://www.gravatar.com/avatar/' + CryptoJS.MD5(email) + '.jpg?s=140';
+  });
+
+  var key = window.location.hash.substr(1);
+  if(key) {
+    if(!(check_key(key) && decode(key)))
+      return decoding_failed();
+
+    hide_info();
+  } else {
+    <% if env == :debug %>
+      var decode_button = Zepto('<button>');
+
+      decode_button.attr('id','decode-button');
+      decode_button.text('Decode!');
+      decode_button.on('click', function() {
+        if(!decode('<%= cipher.key %>'))
+          console.log("Decoding failed.");
+
+        hide_info();
+      });
+
+      $('#decoding-info').append(decode_button);
+    <% else %>
+      no_access();
+    <% end %>
+  }
+});

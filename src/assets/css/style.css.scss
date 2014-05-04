@@ -1,0 +1,267 @@
+/* Eric Meyer's Reset CSS v2.0 - http://cssreset.com */
+
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
+
+/* Variables */
+
+$default-border: 1px solid #999;
+$default-margin: 0.475rem;
+$big-margin:     $default-margin * 2;
+$small-margin:   $default-margin * 0.75;
+$tiny-margin:   $default-margin * 0.25;
+$font-size-small: 0.725rem;
+$alternate-background-color: #ccc;
+
+/* Mixins */
+
+@mixin alternate-font {
+  font-family: Georgia, Serif; 
+  font-style: italic; 
+  color: #444;
+}
+
+@mixin code-font {
+  font: 1rem "Lucida Console", Monaco, monospace;
+}
+
+/* Typography */
+
+html {
+  font-size: 95%;
+  line-height: 150%;
+}
+
+body { 
+  color: black;
+  font: 1.0rem Helvetica, Sans-Serif; 
+  background: white; 
+}
+
+a {
+  color: black;
+  text-decoration: none;
+  border: none;
+}
+    
+a:hover {
+  color: #999;
+}
+
+h1 { 
+  padding: 0 0 0.2rem 0;
+  font-size: 1.75rem; 
+  font-weight: bold; 
+  letter-spacing: -0.1rem;
+  border-bottom: $default-border;
+}
+
+h2 {
+  font-style: italic;
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding-right: 1.5rem;
+}
+
+h3 {
+  font-size: 1.15rem;
+}
+
+emph {
+  font-style: italic;
+}
+
+code {
+  @include code-font;
+}
+
+ul {
+  list-style-type: disc;
+  margin: 0 0 $small-margin 1.2rem;
+}
+
+#objective {
+  @include alternate-font;
+}
+
+.time-line {
+  @include alternate-font;
+  font-size: $font-size-small;
+  float: right;
+  
+  background-color: $alternate-background-color;
+  border-radius: 3px;
+  padding: 3px 6px;
+}
+
+/* Language graph */
+
+#language-graph {
+  padding: 0;
+  margin: 0 0 $default-margin 0;
+  list-style-type: none;
+  line-height: 1;
+
+  li {
+    margin-bottom: $tiny-margin;
+    padding-left: $tiny-margin;
+
+    .language-name {
+      @include code-font;
+      font-size: $font-size-small;
+      padding-left: $tiny-margin;
+    }
+
+    .language-years {
+      @include alternate-font;
+      font-size: $font-size-small;
+    }
+  }
+
+  li:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/* Layout */
+
+#page-wrap {
+  width: 670px;
+  margin: 40px auto;
+}
+
+header {
+  margin-bottom: $default-margin;
+
+  #photo {
+    text-align: right;
+
+    img {
+      padding: 1px;
+      border: $default-border;
+    }
+  }
+
+  #name-contacts-wrap {
+    #name {
+      margin-bottom: $default-margin;
+    }
+
+    #contacts {
+
+      .contact-container {
+        position: relative;
+        margin-left: 1.5rem;
+      }
+
+      .contact {
+        line-height: 160%;
+      }
+
+      .contact:before {
+        position: absolute;
+        width: 1.4rem;
+        content: " ";
+        background-size: 100% 100%;
+        left: -1.55rem;
+        top: 2px;
+        height: 1.4rem;
+      }
+      
+      #contact-github:before {
+        background-image: url('../emoji/octocat.png');
+      }
+
+      #contact-email:before {
+        background-image: url('../emoji/email.png');
+      }
+
+      #contact-cell:before {
+        background-image: url('../emoji/iphone.png');
+      }
+
+      #contact-location:before {
+        background-image: url('../emoji/house.png');
+      }
+    }
+  }
+}
+
+#objective {
+  margin-bottom: $default-margin;
+  border-radius: 4px;
+  padding: 0.6rem 2rem;
+}
+
+.two-columns {
+  display: flex;
+  flex-flow: row;
+
+  margin-bottom: $default-margin;
+
+  .left-column {
+    flex: 1 1 25%;
+  }
+
+  .right-column {
+    padding-left: 1.5rem;
+    flex: 1 1 80%;
+  }
+
+  .border-left {
+    border-left: $default-border;
+  }
+}
+
+.experience {
+  /* margin-bottom: $small-margin; */
+}
+
+/* Print layout */
+
+@media print {
+  #language-graph li {
+    -webkit-print-color-adjust: exact;
+  }
+
+  .contact:before {
+    -webkit-print-color-adjust: exact;
+  }
+}
+
+/* Mobile layout */
+
+@media all and (max-device-width: 760px) {
+  .no-mobile { display: none; }
+
+  #page-wrap {
+    width: 100%;
+    margin: 0;
+    padding: $default-margin / 2;
+  }
+
+  #objective-contacts-wrap {
+    display: block;
+
+    #objective {
+      margin-bottom: $default-margin;
+    }
+
+    #contacts {
+      margin-left: 1.6rem;
+    }
+  }
+
+  .two-columns {
+    display: block;
+
+    .right-column {
+      padding-left: 0;
+    }
+
+    .border-left {
+      border: none;
+    }
+  }
+}
+
+

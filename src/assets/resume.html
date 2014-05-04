@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <style type="text/css">
+    #decoding-overlay {
+      position: fixed;
+      z-index:199;
+      top: 0px;
+      left: 0px;
+      height:100%;
+      width:100%;
+      background-color: white;
+      text-align: center;
+    }
+
+    #decoding-centerer {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #decoding-info {
+      margin-top: -50px;
+      font: 1.8rem "Lucida Console", Monaco, monospace;
+    }
+  </style>
+  <script src="js/resume.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>Curriculum Vitae</title>
+</head>
+<body>
+  <div id="decoding-overlay" class="no-print">
+    <div id="decoding-centerer">
+      <div id="decoding-info">
+      </div>
+    </div>
+  </div>
+  <div id="content"></div>
+</body>
+</html>
