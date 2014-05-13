@@ -11,23 +11,24 @@ $small-margin:   $default-margin * 0.75;
 $tiny-margin:   $default-margin * 0.25;
 $font-size-small: 0.725rem;
 $alternate-background-color: #ccc;
+$alternate-font-color: #444;
 
 /* Mixins */
 
 @mixin alternate-font {
   font-family: Georgia, Serif; 
   font-style: italic; 
-  color: #444;
+  color: $alternate-font-color;
 }
 
 @mixin code-font {
-  font: 1rem "Lucida Console", Monaco, monospace;
+  font: 0.9rem "Lucida Console", Monaco, monospace;
 }
 
 /* Typography */
 
 html {
-  font-size: 95%;
+  font-size: 100%;
   line-height: 150%;
 }
 
@@ -93,11 +94,17 @@ ul {
   padding: 3px 6px;
 }
 
+footer {
+  font-size: 65%;
+  text-align: center;
+  color: $alternate-font-color;
+}
+
 /* Language graph */
 
 #language-graph {
   padding: 0;
-  margin: 0 0 $default-margin 0;
+  margin: $default-margin 0 $default-margin 0;
   list-style-type: none;
   line-height: 1;
 
@@ -195,6 +202,7 @@ header {
 .two-columns {
   display: flex;
   flex-flow: row;
+  page-break-inside: avoid;
 
   margin-bottom: $default-margin;
 
@@ -219,6 +227,20 @@ header {
 /* Print layout */
 
 @media print {
+  .no-print { display: none; }
+
+  body {
+    font-size: 11pt;
+  }
+
+  #page-wrap {
+    margin: 0;
+  }
+
+  #photo img {
+    border: none;
+  }
+
   #language-graph li {
     -webkit-print-color-adjust: exact;
   }

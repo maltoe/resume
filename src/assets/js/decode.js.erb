@@ -28,7 +28,9 @@ function decode(key) {
   var html = HandlebarsTemplates['js/content'](json);
   $("#content").html(html);
 
-  update_language_graph(json['skills']['languages'])
+  update_language_graph(json['skills']['languages']);
+
+  document.title = json['title'];
 
   return true;
 }
@@ -40,10 +42,6 @@ function hide_info() {
 }
 
 function no_access() {
-  $("#decoding-info").html("No access.");
-}
-
-function decoding_failed() {
   $("#decoding-info").html("Decoding failure.");
 }
 
@@ -55,7 +53,7 @@ Zepto(function($) {
   var key = window.location.hash.substr(1);
   if(key) {
     if(!(check_key(key) && decode(key)))
-      return decoding_failed();
+      return no_access();
 
     hide_info();
   } else {

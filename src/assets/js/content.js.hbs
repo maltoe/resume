@@ -1,6 +1,6 @@
 <div id="page-wrap">
   <header class="two-columns">
-    <div id="photo" class="left-column no-mobile">
+    <div id="photo" class="left-column">
       <img src="{{ gravatar contact.email }}">
     </div>
     <div id="name-contacts-wrap" class="right-column">
@@ -57,9 +57,7 @@
 
   <div class="two-columns">
     <div class="left-column">
-      <h2>Skills &amp; special knowledge</h2>
-    </div>
-    <div class="right-column border-left">
+      <h2>Skills</h2>
       <ul id="language-graph">
         {{#each skills.languages }}
         <li id="language-{{ selector }}">
@@ -67,6 +65,8 @@
         </li>
         {{/each}}
       </ul>
+    </div>
+    <div class="right-column border-left">
       <ul>
         {{#each skills.items}}
         <li>{{{ this }}}</li>
@@ -88,8 +88,8 @@
     </div>
   </div>
   
-  <footer>
-    <!-- TODO -->
+  <footer class="no-mobile no-print">
+    This page has been built using <a href="http://code.google.com/p/crypto-js/">crypto-js</a>, <a href="http://zeptojs.com/">zepto.js</a>, <a href="http://handlebarsjs.com/">handlebars</a>, <a href="https://github.com/jgraichen/sprockets-standalone">sprockets-standalone</a> and <a href="https://github.com/github/gemoji">gemoji</a>.
   </footer>
 
 </div> <!-- #page-wrap -->
