@@ -91,7 +91,7 @@ ul {
   
   background-color: $alternate-background-color;
   border-radius: 3px;
-  padding: 3px 6px;
+  padding: 3px 6px 1px 6px;
 }
 
 footer {
@@ -261,7 +261,7 @@ header {
     padding: $default-margin / 2;
   }
 
-  #photo {
+  header #photo {
     text-align: left;
   }
 
