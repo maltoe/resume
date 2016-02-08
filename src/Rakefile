@@ -46,12 +46,11 @@ module Resume
   private
 
     def globals
-      if !@globals
+      @globals ||= begin
         data     = YAML.load_file(File.expand_path('../data/resume.yml', __FILE__))
         cipher   = data.has_key?('key') ? Cipher.new(data['key']) : Cipher.global
-        @globals = { cipher: cipher, data: cipher.encrypt(data.to_json) }
+        { cipher: cipher, data: cipher.encrypt(data.to_json) }
       end
-      @globals
     end
   end
 
