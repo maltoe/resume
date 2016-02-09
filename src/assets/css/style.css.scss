@@ -80,6 +80,41 @@ ul {
   margin: 0 0 $small-margin 1.2rem;
 }
 
+.emoji-container {
+  position: relative;
+  margin-left: 1.5rem;
+}
+
+.emoji:before {
+  position: absolute;
+  width: 1.4rem;
+  content: " ";
+  background-size: 100% 100%;
+  left: -1.55rem;
+  top: 2px;
+  height: 1.4rem;
+}
+
+.emoji-github:before {
+  background-image: url('../emoji/octocat.png');
+}
+
+.emoji-email:before {
+  background-image: url('../emoji/email.png');
+}
+
+.emoji-cell:before {
+  background-image: url('../emoji/iphone.png');
+}
+
+.emoji-location:before {
+  background-image: url('../emoji/house.png');
+}
+
+.emoji-see-no-evil:before {
+  background-image: url('../emoji/see_no_evil.png');
+}
+
 #objective {
   @include alternate-font;
 }
@@ -95,9 +130,12 @@ ul {
 }
 
 footer {
-  font-size: 65%;
-  text-align: center;
   color: $alternate-font-color;
+  text-align: center;
+}
+
+footer.small {
+  font-size: 65%;
 }
 
 /* Language graph */
@@ -154,40 +192,8 @@ header {
     }
 
     #contacts {
-
-      .contact-container {
-        position: relative;
-        margin-left: 1.5rem;
-      }
-
       .contact {
         line-height: 160%;
-      }
-
-      .contact:before {
-        position: absolute;
-        width: 1.4rem;
-        content: " ";
-        background-size: 100% 100%;
-        left: -1.55rem;
-        top: 2px;
-        height: 1.4rem;
-      }
-      
-      #contact-github:before {
-        background-image: url('../emoji/octocat.png');
-      }
-
-      #contact-email:before {
-        background-image: url('../emoji/email.png');
-      }
-
-      #contact-cell:before {
-        background-image: url('../emoji/iphone.png');
-      }
-
-      #contact-location:before {
-        background-image: url('../emoji/house.png');
       }
     }
   }
@@ -222,6 +228,11 @@ header {
 
 .experience {
   /* margin-bottom: $small-margin; */
+}
+
+#print-button {
+  display: inline-block;
+  line-height: 160%;
 }
 
 /* Print layout */

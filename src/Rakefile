@@ -57,7 +57,7 @@ module Resume
   class RakeTask < ::Sprockets::Standalone::RakeTask
     def initialize(name)
       super(name) do |task, sprockets|
-        task.assets  = %w(js/resume.js css/style.css resume.html emoji/email.png emoji/octocat.png emoji/iphone.png emoji/house.png)
+        task.assets  = %w(js/resume.js css/style.css resume.html emoji/email.png emoji/octocat.png emoji/iphone.png emoji/house.png emoji/see_no_evil.png)
         task.sources = %w(assets vendor) + [Emoji.images_path]
         task.digest  = false
 
