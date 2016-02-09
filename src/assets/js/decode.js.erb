@@ -7,13 +7,17 @@ function decipher(s, key) {
   }
 }
 
-function check_key(key) {
-  <% salt  = SecureRandom.hex(16) %>
-  <% token = SecureRandom.hex(16) %>
-  var token     = '<%= token %>';
-  var secret    = '<%= cipher.encrypt(token, salt) %>';
-  var decrypted = decipher(secret, key + '<%= salt %>');
-  return (token == decrypted);
+function get_payload_key(key) {
+  <% cipher.keys.each do |avail_key| %>
+    <% salt  = SecureRandom.hex(16) %>
+    <% token = SecureRandom.hex(16) %>
+    var token     = '<%= token %>';
+    var secret    = '<%= cipher.encrypt(token, avail_key, salt) %>';
+    var decrypted = decipher(secret, key + '<%= salt %>');
+    if(token == decrypted)
+      return decipher('<%= cipher.encrypt(cipher.payload_key, avail_key, salt) %>', key + '<%= salt %>');
+  <% end %>
+  return null;
 }
 
 function decode(key) {
@@ -52,7 +56,11 @@ Zepto(function($) {
 
   var key = window.location.hash.substr(1);
   if(key) {
-    if(!(check_key(key) && decode(key)))
+    var payload_key = get_payload_key(key);
+    if(!payload_key)
+      no_access();
+
+    if(!decode(payload_key))
       return no_access();
 
     hide_info();
@@ -63,7 +71,7 @@ Zepto(function($) {
       decode_button.attr('id','decode-button');
       decode_button.text('Decode!');
       decode_button.on('click', function() {
-        if(!decode('<%= cipher.key %>'))
+        if(!decode('<%= cipher.payload_key %>'))
           console.log("Decoding failed.");
 
         hide_info();

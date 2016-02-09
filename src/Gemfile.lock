@@ -15,6 +15,7 @@ GEM
       execjs (>= 1.2.9)
       sprockets (>= 2.0.3)
       tilt
+    highline (1.6.21)
     hike (1.2.3)
     json (1.8.1)
     libv8 (3.16.14.3)
@@ -42,6 +43,7 @@ PLATFORMS
 DEPENDENCIES
   gemoji
   handlebars_assets
+  highline
   rake
   sass
   sprockets-standalone!
