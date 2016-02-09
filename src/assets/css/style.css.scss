@@ -4,7 +4,8 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 
 /* Variables */
 
-$default-border: 1px solid #999;
+$default-border-color: #999;
+$default-border: 1px solid $default-border-color;
 $default-margin: 0.475rem;
 $big-margin:     $default-margin * 2;
 $small-margin:   $default-margin * 0.75;
@@ -123,10 +124,15 @@ ul {
   @include alternate-font;
   font-size: $font-size-small;
   float: right;
-  
+  margin-top: 2px;
+
   background-color: $alternate-background-color;
-  border-radius: 3px;
+  border-radius: 2px;
   padding: 3px 6px 1px 6px;
+
+  -webkit-box-shadow: 1px 1px 3px 0px $default-border-color;
+  -moz-box-shadow: 1px 1px 3px 0px $default-border-color;
+  box-shadow: 1px 1px 3px 0px $default-border-color;
 }
 
 footer {
@@ -182,7 +188,7 @@ header {
 
     img {
       padding: 1px;
-      border: $default-border;
+      box-shadow: 1px 1px 3px 0px $default-border-color;
     }
   }
 
@@ -239,6 +245,12 @@ header {
 
 @media print {
   .no-print { display: none; }
+
+  * {
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+  }
 
   body {
     font-size: 11pt;
