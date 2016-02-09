@@ -44,7 +44,7 @@ module Resume
   private
 
     def old_keys_path
-      File.expand_path('../../.old-keys.yml', __FILE__)
+      File.expand_path('../data/old-keys.yml', __FILE__)
     end
 
     def cryptojs_path

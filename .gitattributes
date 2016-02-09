@@ -1,1 +1,2 @@
 src/data/resume.yml filter=git-crypt diff=git-crypt
+src/data/old-keys.yml filter=git-crypt diff=git-crypt
