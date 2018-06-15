@@ -17,8 +17,8 @@ $alternate-font-color: #444;
 /* Mixins */
 
 @mixin alternate-font {
-  font-family: Georgia, Serif; 
-  font-style: italic; 
+  font-family: Georgia, Serif;
+  font-style: italic;
   color: $alternate-font-color;
 }
 
@@ -33,10 +33,10 @@ html {
   line-height: 150%;
 }
 
-body { 
+body {
   color: black;
-  font: 1.0rem Helvetica, Sans-Serif; 
-  background: white; 
+  font: 1.0rem Helvetica, Sans-Serif;
+  background: white;
 }
 
 a {
@@ -44,15 +44,15 @@ a {
   text-decoration: none;
   border: none;
 }
-    
+
 a:hover {
   color: #999;
 }
 
-h1 { 
+h1 {
   padding: 0 0 0.2rem 0;
-  font-size: 1.75rem; 
-  font-weight: bold; 
+  font-size: 1.75rem;
+  font-weight: bold;
   letter-spacing: -0.1rem;
   border-bottom: $default-border;
 }
@@ -312,5 +312,3 @@ header {
     }
   }
 }
-
-

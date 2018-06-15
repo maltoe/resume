@@ -13,7 +13,7 @@
         </div>
         <div class="emoji-container">
           <a class="contact emoji emoji-email" href="{{ contact.email }}">
-              {{ contact.email }} 
+              {{ contact.email }}
           </a>
         </div>
         <div class="emoji-container">
@@ -60,7 +60,7 @@
       <h2>Skills</h2>
       <ul id="language-graph">
         {{#each skills.languages }}
-        <li id="language-{{ selector }}">
+        <li>
           <span class="language-name">{{ name }}</span> <span class="language-years">({{ years }} years)</span>
         </li>
         {{/each}}
@@ -99,7 +99,7 @@
   </footer>
 
   <footer class="small no-mobile no-print">
-    This page has been built using <a href="http://code.google.com/p/crypto-js/">crypto-js</a>, <a href="http://zeptojs.com/">zepto.js</a>, <a href="http://handlebarsjs.com/">handlebars</a>, <a href="https://github.com/jgraichen/sprockets-standalone">sprockets-standalone</a> and <a href="https://github.com/github/gemoji">gemoji</a>. <a href="https://github.com/maltoe/resume/">Read how</a>.
+    This page has been built using <a href="http://code.google.com/p/crypto-js/">crypto-js</a>, <a href="http://handlebarsjs.com/">handlebars</a>, <a href="https://webpack.js.org/">webpack.js</a> and <a href="https://github.com/github/gemoji">gemoji</a>. <a href="https://github.com/maltoe/resume/">Read how</a>.
   </footer>
 
 </div> <!-- #page-wrap -->
