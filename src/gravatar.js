@@ -5,5 +5,5 @@
 import MD5 from 'crypto-js/md5'
 
 export default function(email) {
-  return 'http://www.gravatar.com/avatar/' + MD5(email) + '.jpg?s=140';
+  return 'http://www.gravatar.com/avatar/' + MD5(email) + '.jpg?s=220';
 }
