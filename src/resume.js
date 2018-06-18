@@ -1,5 +1,7 @@
+import './css/base.css.scss'
+import './css/emojis.css.scss'
 import './css/decoding_overlay.css.scss'
-import './css/style.css.scss'
+import './css/print.css.scss'
 
 import CryptoJS from 'crypto-js'
 import secrets from './secrets.dat'
@@ -52,15 +54,7 @@ function loadContent(content_key) {
 }
 
 function hideInfo() {
-  // https://stackoverflow.com/questions/29017379/how-to-make-fadeout-effect-with-pure-javascript/29017677#29017677
-  let overlay = document.getElementById("decoding-overlay").style;
-  let info = document.getElementById("decoding-info").style;
-  info.opacity = 1.0;
-  (
-    function fade() {
-      (info.opacity -= .1) <= 0 ? overlay.display = "none" : setTimeout(fade, 40);
-    }
-  )();
+  document.getElementById("decoding-overlay").classList.add("hidden");
 }
 
 function noAccess() {

@@ -1,109 +1,74 @@
-<header class="container">
-  <div class="centered">
-    <img class="avatar" src="{{ gravatar contact.email }}">
-  </div>
+<div id="print-button" class="no-print">
+  <p>
+    <a class="button" href="javascript:window.print()">Print me</a>
+  </p>
+</div>
 
-  <div class="two-columns">
-    <div id="name-contacts-wrap" class="right-column">
-      <h1 id="name">{{ name }}</h1>
-      <div id="contacts">
-        <p>
-          <i class="emoji emoji-github"></i>
-          <a class="contact" href="http://github.com/{{ contact.github }}">github.com/{{ contact.github }}</a>
-        </p>
-        <p>
-          <i class="emoji emoji-email"></i>
-          <a class="contact" href="{{ contact.email }}">{{ contact.email }}</a>
-        </p>
-        <p>
-          <i class="emoji emoji-cell"></i>
-          {{ contact.cell }}
-        </p>
-        <p>
-          <i class="emoji emoji-location"></i>
-          {{ contact.location }}
-        </p>
-      </div>
-    </div>
-  </div>
-</header>
+<div class="page">
+  <div class="row">
+    <div id="sidebar" class="left-column">
+      <header id="profile">
+        <h1 id="name">{{ name }}</h1>
+        <h2 id="job">{{ job }}</h2>
+        <p id="avatar"><img src="{{ gravatar contact.email }}"></p>
+      </header>
 
-<div class="container">
-  <div class="two-columns">
-    <div class="left-column">
-      <h2>Work Experience</h2>
-    </div>
-    <div class="right-column border-left">
-      {{#each experience }}
-        <div class="experience">
-          <p class="time-line">
-            <span class="experience-period-start">{{{ period.start }}}</span>
-            &middot;&middot;&middot;
-            <span class="experience-period-end">{{{ period.end }}}</span>
-          </p>
-          <h3><a href="{{ employer.href }}">{{{ employer.name }}}</a>, {{{ title }}}</h3>
-          <ul>
-            {{#each items }}
-            <li>{{{ this }}}</li>
-            {{/each}}
-          </ul>
-        </div>
-      {{/each}}
-    </div>
-  </div>
+      <section id="intro">
+        <p>{{{ intro }}}</p>
+      </section>
 
-  <div class="two-columns">
-    <div class="left-column">
-      <h2>Skills</h2>
-      <ul id="language-graph">
-        {{#each skills.languages }}
-        <li>
-          <span class="language-name">{{ name }}</span> <span class="language-years">({{ years }} years)</span>
-        </li>
+      <section id="contacts">
+        <ul>
+          <li>
+            <i class="emoji emoji-github"></i>
+            <a class="contact" href="http://github.com/{{ contact.github }}">github.com/{{ contact.github }}</a>
+          </li>
+          <li>
+            <i class="emoji emoji-email"></i>
+            <a class="contact" href="{{ contact.email }}">{{ contact.email }}</a>
+          </li>
+          <li>
+            <i class="emoji emoji-cell"></i>
+            {{ contact.cell }}
+          </li>
+          <li>
+            <i class="emoji emoji-location"></i>
+            {{ contact.location }}
+          </li>
+        </ul>
+      </section>
+
+      <section id="skills">
+        <p class="small">Here is some of the main technologies I have worked with&hellip;</p>
+        <p class="tiny">{{{ skills }}}</p>
+      </section>
+    </div>
+
+    <div id="main-content" class="right-column">
+      <section id="timeline">
+        {{#each experience }}
+          <div class="timeline-item" date-is="{{ date }}">
+            <p class="date">{{ date }}</p>
+            <p class="employer">
+              <a href="{{ employer.href }}">{{{ employer.name }}}</a>, {{{ title }}}
+            </p>
+            <ul class="achievements">
+              {{#each items }}
+              <li>{{{ this }}}</li>
+              {{/each}}
+            </ul>
+          </div>
         {{/each}}
-      </ul>
-    </div>
-    <div class="right-column border-left">
-      <ul>
-        {{#each skills.items}}
-        <li>{{{ this }}}</li>
-        {{/each}}
-    </div>
-  </div>
+      </section>
+    </div> <!-- #main-content -->
+  </div> <!-- .row -->
 
-  <div class="two-columns">
-    <div class="left-column">
-      <h2>Education</h2>
-    </div>
-    <div class="right-column border-left">
-      <p class="time-line">{{{ education.year }}}</p>
-      <h3><a href="{{ education.university.href }}">{{{ education.university.name }}}</a></h3>
-      <ul>
-        <li>{{{ education.degree }}}</li>
-        <li>Thesis: <a href="{{ education.thesis.href }}">{{{ education.thesis.title }}}</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <div>
-  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo
-  dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-  
-  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-  </div>
-
-  <footer class="centered no-mobile no-print">
-    <p class="emoji-container">
-      <a class="emoji emoji-see-no-evil" href="javascript:window.print()">
-        Rather read a dead tree version?
-      </a>
+  <footer class="no-mobile no-print">
+    <p>
+      This page has been built using <a href="http://code.google.com/p/crypto-js/">crypto-js</a>, <a href="http://handlebarsjs.com/">handlebars</a>, and <a href="https://webpack.js.org/">webpack.js</a>. <a class="button" href="https://github.com/maltoe/resume/">Read how</a>
+      <br>
+      Icons made by <a href="https://www.flaticon.com/authors/chanut" title="Chanut">Chanut</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>. GitHub mark <a href="https://github.com/logos/">by GitHub</a>. Design based on template by <a href="http://www.thomashardy.me.uk/free-responsive-html-css3-cv-template">Thomas Hardy</a>.
     </p>
   </footer>
 
-  <footer class="small no-mobile no-print">
-    This page has been built using <a href="http://code.google.com/p/crypto-js/">crypto-js</a>, <a href="http://handlebarsjs.com/">handlebars</a>, and <a href="https://webpack.js.org/">webpack.js</a>. <a href="https://github.com/maltoe/resume/">Read how</a>.
-    <br>
-    Icons made by <a href="https://www.flaticon.com/authors/chanut" title="Chanut">Chanut</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>. GitHub mark <a href="https://github.com/logos/">by GitHub</a>.
-  </footer>
-
-</div> <!-- .container -->
+</div> <!-- .page -->

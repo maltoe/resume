@@ -1,22 +1,42 @@
 #decoding-overlay {
   position: fixed;
-  z-index:199;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
   height:100%;
   width:100%;
+  z-index: 200;
+
   background-color: white;
   text-align: center;
+
+  #decoding-centerer {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #decoding-info {
+    margin-top: -50px;
+    font-size: 1.8rem;
+    color: black;
+    opacity: 1;
+    transition: opacity ease-in 0.7s;
+  }
+
+  &.hidden {
+    animation: remove 0s linear 0.8s forwards;
+    animation-fill-mode: forwards;
+
+    #decoding-info { opacity: 0; }
+  }
 }
 
-#decoding-centerer {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#decoding-info {
-  margin-top: -50px;
-  font: 1.8rem "Lucida Console", Monaco, monospace;
+@keyframes remove {
+  to {
+    width:0;
+    height:0;
+    overflow:hidden;
+    visibility:hidden;
+  }
 }

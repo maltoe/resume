@@ -1,0 +1,34 @@
+$col-light-shades: #F2F4F1;
+$col-light-accent: #868E90;
+$col-main-brand:   #614F3F;
+$col-dark-accent:  #857F80;
+$col-dark-shades:  #241B24;
+
+$col-font-main:   $col-light-shades;
+$col-font-alt:    $col-light-accent;
+$col-bg-main:     $col-dark-shades;
+$col-bg-alt:      $col-dark-accent;
+$col-layout-main: $col-main-brand;
+
+$col-bg-drop: white;
+$col-bg-main: white;
+$col-bg-alt: white;
+$col-layout-main: grey;
+$col-font-main: black;
+$col-font-alt: black;
+$col-font-high: green;
+
+$default-border: 1px solid $col-layout-main;
+
+$font-size-small: 0.85em;
+$font-size-tiny:  0.6em;
+
+@mixin small-font {
+  font-size: $font-size-small;
+  line-height: 1.4em;
+}
+
+@mixin tiny-font {
+  font-size: $font-size-tiny;
+  line-height: 1.4em;
+}
