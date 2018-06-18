@@ -43,13 +43,6 @@ function loadContent(content_key) {
   document.title = content.title;
   document.getElementById("content").innerHTML = html;
 
-  /*
-  var html = HandlebarsTemplates['js/content'](json);
-  $("#content").html(html);
-
-  update_language_graph(json['skills']['languages']);
-  */
-
   return true;
 }
 
