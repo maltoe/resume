@@ -1,7 +1,7 @@
 import './css/base.css.scss'
 import './css/emojis.css.scss'
 import './css/decoding_overlay.css.scss'
-import './css/print.css.scss'
+import './css/media.css.scss'
 
 import CryptoJS from 'crypto-js'
 import secrets from './secrets.dat'

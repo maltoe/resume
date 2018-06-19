@@ -11,7 +11,7 @@ html {
   font-style: normal;
   font-size: 19px;
 /*  font-size: 11pt; on screen */
-  line-height: 1.4rem; /* baseline is 26.6px on screen */
+  line-height: $baseline; /* baseline is 26.6px on screen */
 }
 
 body {
@@ -22,15 +22,41 @@ body {
 p {
   color: $col-font-main;
   font-size: 1.0rem;
-  line-height: 1.4rem;
-  margin: 1.4rem 0;
+  line-height: $baseline;
+  margin: 0;
 }
 
 b { font-weight: 700; }
 i { font-style: italic; }
 
-h1 { font-size: 2.0rem; line-height: 2.8rem;  margin: 1.4rem 0;  }
-h2 { font-size: 1.0rem; line-height: 1.4rem; margin: 1.4rem 0; }
+h1 {
+  font-size: 2.0rem;
+  line-height: 2.8rem;
+  margin: 0;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 1.0rem;
+  line-height: $baseline;
+  margin: 0;
+  font-style: italic;
+  border-top: $solid-border;
+  border-bottom: $solid-border;
+  text-indent: 1.4rem;
+  position: relative;
+}
+
+h2:before {
+  content: "\21D5";
+  position: absolute;
+  display: inline-block;
+  top: 0;
+  left: -1.4rem;
+  float: left;
+  padding-left: 0.3em;
+  font-style: normal;
+}
 
 code {
   font-family: "Lucida Console", Monaco, monospace;
@@ -66,7 +92,7 @@ ul {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 1.4rem;
+  margin-top: $baseline;
 }
 
 .row {
@@ -80,9 +106,9 @@ ul {
   top: 0;
   right: 0;
   width: 2.8rem;
-  margin-right: 1.4rem;
-  margin-top: 1.4rem;
-  padding: 0 1.4rem;
+  margin-right: $baseline;
+  margin-top: $baseline;
+  padding: 0 $baseline;
 
   p {
     @include tiny-font;
@@ -90,14 +116,15 @@ ul {
 }
 
 #sidebar {
-  padding: 0 1.4rem;
+  padding: 0 $baseline;
 
-  #name {
-    margin: 0;
+  h2 {
+    margin-bottom: $half-baseline;
   }
 
-  #job {
-    margin: 0 1.4rem 0 0;
+  section {
+    padding-top: $half-baseline;
+    padding-bottom: $half-baseline;
   }
 
   #avatar {
@@ -120,37 +147,59 @@ ul {
     text-indent: 0.4rem;
 
     li {
-      border-top: $default-border;
+      border-top: $dashed-border;
     }
 
     li:last-child {
-      border-bottom: $default-border;
+      border-bottom: $dashed-border;
+    }
+  }
+
+  #skills {
+    ul { list-style-type: none; }
+    line-height: $baseline;
+
+    .skill-name {
+      margin-top: $half-baseline;
+      font-weight: bold;
+    }
+
+    .skill-text {
+      padding-left: $baseline;
+
+      &.small { @include small-font; }
+      &.tiny { @include tiny-font; }
     }
   }
 }
 
 #main-content {
-  margin-top: 0.7rem;
-
   #timeline {
     .date {
       margin-top: 0;
+      margin-bottom: $half-baseline;
       @include small-font;
     }
 
     .employer {
-      margin: 0;
+      margin-top: 0;
+      margin-bottom: $half-baseline;
     }
 
     .achievements {
       @include small-font;
-      padding-left: 1.4rem;
+      padding-left: $baseline;
+    }
+
+    .timeline-header {
+      padding: $half-baseline $baseline 0;
+      border-left: $solid-border;
     }
 
     .timeline-item {
-      padding: 0.7rem 1.4rem;
+      padding: $half-baseline $baseline;
       position: relative;
-      border-left: $default-border;
+      border-left: $solid-border;
 
       &::after {
         width: 0.6rem;
@@ -161,7 +210,7 @@ ul {
         left: -4px;
         border-radius: 10px;
         content: '';
-        border: $default-border;
+        border: $solid-border;
         background: white;
       }
 
@@ -173,11 +222,16 @@ ul {
 }
 
 footer {
-  margin-top: 2.8rem;
-
   p {
-    margin: 0 5.6rem;
     @include tiny-font;
     text-align: center;
+  }
+
+  p:first-child {
+    margin-top: 4.2rem;
+  }
+
+  p:last-child {
+    margin-bottom: 1.4rem;
   }
 }

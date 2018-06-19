@@ -1,6 +1,6 @@
 <div id="print-button" class="no-print">
   <p>
-    <a class="button" href="javascript:window.print()">Print me</a>
+    <a class="button" href="javascript:window.print()">Print this</a>
   </p>
 </div>
 
@@ -9,51 +9,65 @@
     <div id="sidebar" class="left-column">
       <header id="profile">
         <h1 id="name">{{ name }}</h1>
-        <h2 id="job">{{ job }}</h2>
-        <p id="avatar"><img src="{{ gravatar contact.email }}"></p>
       </header>
 
       <section id="intro">
+        <h2>{{ job }}</h2>
+        <p id="avatar" class="no-print"><img src="{{ gravatar contact.email }}"></p>
         <p>{{{ intro }}}</p>
       </section>
 
       <section id="contacts">
         <ul>
           <li>
-            <i class="emoji emoji-github"></i>
-            <a class="contact" href="http://github.com/{{ contact.github }}">github.com/{{ contact.github }}</a>
+            <i class="emoji emoji-location"></i>
+            {{ contact.location }}
           </li>
           <li>
             <i class="emoji emoji-email"></i>
-            <a class="contact" href="{{ contact.email }}">{{ contact.email }}</a>
+            <a class="contact" href="mailto:{{ contact.email }}">{{ contact.email }}</a>
           </li>
           <li>
             <i class="emoji emoji-cell"></i>
             {{ contact.cell }}
           </li>
           <li>
-            <i class="emoji emoji-location"></i>
-            {{ contact.location }}
+            <i class="emoji emoji-github"></i>
+            <a class="contact" href="http://github.com/{{ contact.github }}">github.com/{{ contact.github }}</a>
           </li>
         </ul>
       </section>
 
       <section id="skills">
-        <p class="small">Here is some of the main technologies I have worked with&hellip;</p>
-        <p class="tiny">{{{ skills }}}</p>
+        <h2>What I can offer you&hellip;</h2>
+        <ul>
+        {{#each skills}}
+          <li>
+            <p class="skill-name">{{ name }}</p>
+            {{#if tiny}}
+            <p class="skill-text tiny">{{{ text }}}</p>
+            {{else}}
+            <p class="skill-text small">{{{ text }}}</p>
+            {{/if}}
+          </li>
+        {{/each}}
+        </ul>
       </section>
     </div>
 
     <div id="main-content" class="right-column">
       <section id="timeline">
-        {{#each experience }}
+        <div class="timeline-header">
+          <h2>Experience</h2>
+        </div>
+        {{#each experience}}
           <div class="timeline-item" date-is="{{ date }}">
             <p class="date">{{ date }}</p>
             <p class="employer">
-              <a href="{{ employer.href }}">{{{ employer.name }}}</a>, {{{ title }}}
+              {{{ role }}} at <b><a href="{{ employer.href }}">{{{ employer.name }}}</a></b>
             </p>
             <ul class="achievements">
-              {{#each items }}
+              {{#each items}}
               <li>{{{ this }}}</li>
               {{/each}}
             </ul>
@@ -66,8 +80,9 @@
   <footer class="no-mobile no-print">
     <p>
       This page has been built using <a href="http://code.google.com/p/crypto-js/">crypto-js</a>, <a href="http://handlebarsjs.com/">handlebars</a>, and <a href="https://webpack.js.org/">webpack.js</a>. <a class="button" href="https://github.com/maltoe/resume/">Read how</a>
-      <br>
-      Icons made by <a href="https://www.flaticon.com/authors/chanut" title="Chanut">Chanut</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>. GitHub mark <a href="https://github.com/logos/">by GitHub</a>. Design based on template by <a href="http://www.thomashardy.me.uk/free-responsive-html-css3-cv-template">Thomas Hardy</a>.
+    </p>
+    <p>
+    Icons made by <a href="https://www.flaticon.com/authors/chanut" title="Chanut">Chanut</a> from <a href="https://www.flaticon.com/packs/interface" title="Flaticon">www.flaticon.com</a> licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>. GitHub mark <a href="https://github.com/logos/">by GitHub</a>. Design based on template by <a href="http://www.thomashardy.me.uk/free-responsive-html-css3-cv-template">Thomas Hardy</a>.
     </p>
   </footer>
 

@@ -1,11 +1,11 @@
+@media screen and (max-width: 1000px) {
+  #print-button {
+    display: none;
+  }
+}
+
 @media print {
   .no-print { display: none; }
-
-  * {
-    -webkit-box-shadow: none !important;
-    -moz-box-shadow: none !important;
-    box-shadow: none !important;
-  }
 
   body {
     font-size: 14pt;

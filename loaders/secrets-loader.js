@@ -27,13 +27,6 @@ module.exports = function(source) {
     };
   });
 
-  var message = source;
-  var passphrase = "Secret Passphrase";
-  var encrypted = CryptoJS.AES.encrypt(message, passphrase).toString();
-  var hmac = CryptoJS.HmacSHA256(encrypted, CryptoJS.SHA256(passphrase)).toString();
-  //var transitmessage = "module.exports = function() { return \"" + hmac + encrypted + "\"; }";
-//  return "module.exports = function() { return \"" + hmac + encrypted + "\"; }";
-
   return {
     "content": content_encrypted,
     "envelopes": envelopes
