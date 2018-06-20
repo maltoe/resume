@@ -64,12 +64,11 @@ h2:before {
 a {
   color: $col-font-main;
   text-decoration: none;
-	transition: none;
+	transition: all .15s ease-in;
 }
 
 a:hover {
   color: $col-font-high;
-	transition: all .15s ease-in;
 }
 
 a.button {
