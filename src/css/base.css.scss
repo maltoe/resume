@@ -15,12 +15,11 @@ html {
 }
 
 body {
-  background: white;
+  background: $col-bg-main;
   color: $col-font-main;
 }
 
 p {
-  color: $col-font-main;
   font-size: 1.0rem;
   line-height: $baseline;
   margin: 0;
@@ -34,21 +33,23 @@ h1 {
   line-height: 2.8rem;
   margin: 0;
   font-weight: bold;
+  color: $col-font-dark;
 }
 
 h2 {
   font-size: 1.0rem;
   line-height: $baseline;
   margin: 0;
-  font-style: italic;
+/*  font-style: italic;*/
   border-top: $solid-border;
   border-bottom: $solid-border;
   text-indent: 1.4rem;
   position: relative;
+  color: $col-font-dark;
 }
 
 h2:before {
-  content: "\21D5";
+  content: "\21e9";
   position: absolute;
   display: inline-block;
   top: 0;
@@ -58,19 +59,15 @@ h2:before {
   font-style: normal;
 }
 
-code {
-  font-family: "Lucida Console", Monaco, monospace;
-  color: $col-font-main;
-}
-
 a {
-  text-decoration: none;
   color: $col-font-main;
-	transition: all .2s ease-in;
+  text-decoration: none;
+	transition: none;
 }
 
 a:hover {
   color: $col-font-high;
+	transition: all .15s ease-in;
 }
 
 a.button {
@@ -81,7 +78,7 @@ a.button {
 }
 
 ul {
-  list-style-type: disc;
+  list-style-type: circle;
 }
 
 /* Layout */
@@ -208,10 +205,10 @@ ul {
         top: calc(0.65rem + 0.3rem);
         position: absolute;
         left: -4px;
-        border-radius: 10px;
+        border-radius: 0.6rem;
         content: '';
         border: $solid-border;
-        background: white;
+        background: $col-bg-main;
       }
 
       &:last-child {
