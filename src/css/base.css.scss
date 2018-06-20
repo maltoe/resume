@@ -38,16 +38,17 @@ h1 {
 
 h2 {
   font-size: 1.0rem;
+  text-transform: uppercase;
   line-height: $baseline;
   margin: 0;
-/*  font-style: italic;*/
   border-top: $solid-border;
-  border-bottom: $solid-border;
-  text-indent: 1.4rem;
+  border-left: $solid-border;
+  /*text-indent: 1.4rem;*/
+  text-indent: 0.2rem;
   position: relative;
   color: $col-font-dark;
 }
-
+/*
 h2:before {
   content: "\21e9";
   position: absolute;
@@ -58,6 +59,7 @@ h2:before {
   padding-left: 0.3em;
   font-style: normal;
 }
+*/
 
 a {
   color: $col-font-main;
@@ -115,27 +117,38 @@ ul {
 #sidebar {
   padding: 0 $baseline;
 
-  h2 {
-    margin-bottom: $half-baseline;
-  }
-
   section {
     padding-top: $half-baseline;
     padding-bottom: $half-baseline;
   }
 
+  section:first-of-type {
+    padding-top: 0;
+  }
+
   #avatar {
+    position: relative;
     text-align: center;
 
     img {
       border-radius: 50%;
     }
+
+    #shadow {
+      position: absolute;
+      display: block;
+      top: $half-baseline;
+      left: calc(50% - 80px);
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      box-shadow: 0 0 7px 2px $col-layout-main inset;
+    }
   }
 
-  #intro {
-    p {
-      @include small-font;
-    }
+  .intro-subsection {
+    @include small-font;
+    padding-top: $half-baseline;
   }
 
   #contacts ul {
@@ -224,11 +237,11 @@ footer {
     text-align: center;
   }
 
-  p:first-child {
-    margin-top: 4.2rem;
+  p:first-of-type {
+    margin-top: 2.8rem;
   }
 
-  p:last-child {
+  p:last-of-type {
     margin-bottom: 1.4rem;
   }
 }

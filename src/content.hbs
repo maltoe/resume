@@ -13,8 +13,11 @@
 
       <section id="intro">
         <h2>{{ job }}</h2>
-        <p id="avatar" class="no-print"><img src="{{ gravatar contact.email }}"></p>
-        <p>{{{ intro }}}</p>
+        <div id="avatar" class="no-print intro-subsection">
+          <img src="{{ gravatar contact.email }}">
+          <div id="shadow"></div>
+        </div>
+        <p class="intro-subsection">{{{ intro }}}</p>
       </section>
 
       <section id="contacts">
