@@ -22,4 +22,12 @@
   .emoji:before {
     -webkit-print-color-adjust: exact;
   }
+
+  #main-content {
+    #timeline {
+      .timeline-item:last-child {
+        border-image: none;
+      }
+    }
+  }
 }
