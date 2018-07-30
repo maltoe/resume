@@ -43,6 +43,15 @@ function loadContent(content_key) {
   document.title = content.title;
   document.getElementById("content").innerHTML = html;
 
+  /* Show avatar and shadow only when image has been loaded */
+  var avatar = document.querySelector("#avatar");
+  var avatarImg = document.querySelector("#avatar img");
+  var showAvatar = function() { avatar.classList.remove("hidden"); }
+  if(avatarImg.complete)
+    showAvatar();
+  else
+    avatarImg.addEventListener("load", showAvatar);
+
   return true;
 }
 
