@@ -4,61 +4,33 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
   mode: 'production',
 
-  entry: './src/resume.js',
+  entry: './src/index.js',
 
   output: {
-    filename: 'resume.js',
+    filename: 'index.js',
     path: path.resolve(__dirname, 'dist')
   },
-
-  plugins: [
-    new CopyWebpackPlugin([{ from: 'src/static' }])
-  ],
-
-  resolveLoader: {
-    modules: ['node_modules', path.resolve(__dirname, 'loaders')]
-  },
-
-  /*
-  resolveLoader: {
-    fallback: [
-      path.resolve(__dirname, 'loaders'),
-      path.join(process.cwd(), 'node_modules')
-    ]
-  },
-  */
 
   module: {
     rules: [
       {
-        test: /secrets\.dat$/,
-        use: ["json-loader", "secrets-loader"]
-      },
-
-      {
-        test: /\.scss$/,
+        test: /crypt/,
         use: [{
-          loader: "style-loader"
-        }, {
-          loader: "css-loader"
-        }, {
-          loader: "sass-loader",
-          options: {
-            data: '@import "variables";',
-            includePaths: [path.join(__dirname, 'src/css')]
-          }
-        }]
+          loader: path.resolve(__dirname, 'loaders/secrets-loader.js'),
+          options: { secretsPath: path.resolve(__dirname, 'secrets.crypt.json') }
+        }],
+        type: 'asset/source'
       },
-
       {
-        test: /\.hbs$/,
-        loader: "handlebars-loader"
-      },
-
-      {
-        test: /\.(png|jpg)$/,
-        use: ["file-loader"]
+        test: /\.svg/,
+        type: 'asset/inline'
       }
     ]
-  }
+  },
+
+  plugins: [
+    new CopyWebpackPlugin({
+      patterns: [{ from: 'src/static' }]
+    })
+  ]
 };

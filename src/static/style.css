@@ -1,0 +1,213 @@
+/*
+ * CREDITS:
+ *
+ * Color scheme from Happy Hues
+ * @link https://www.happyhues.co/palettes/8
+ *
+ * Fluid font steps and spaces from Utopia.
+ * @link https://utopia.fyi
+ *
+ *
+ */
+
+:root {
+  --bg-color: #f8f5f2;
+  --fg-color: #222525;
+
+  --secondary-fg-color: #232323;
+
+  --button-bg-color: #078080;
+  --button-fg-color: #232323;
+
+  --stroke: #232323;
+  --main: #fffffe;
+  --highlight: #078080;
+  --secondary: #f45d48;
+  --tertiary: #f8f5f2;
+
+  --transition: 150ms ease;
+
+  --step--2: clamp(0.61rem, calc(0.57rem + 0.20vw), 0.72rem);
+  --step--1: clamp(0.73rem, calc(0.67rem + 0.30vw), 0.90rem);
+  --step-0: clamp(0.88rem, calc(0.79rem + 0.43vw), 1.13rem);
+  --step-1: clamp(1.05rem, calc(0.93rem + 0.62vw), 1.41rem);
+  --step-2: clamp(1.26rem, calc(1.09rem + 0.87vw), 1.76rem);
+  --step-3: clamp(1.51rem, calc(1.27rem + 1.19vw), 2.20rem);
+  --step-4: clamp(1.81rem, calc(1.49rem + 1.62vw), 2.75rem);
+  --step-5: clamp(2.18rem, calc(1.74rem + 2.18vw), 3.43rem);
+
+  --space-3xs: clamp(0.25rem, calc(0.23rem + 0.11vw), 0.31rem);
+  --space-2xs: clamp(0.44rem, calc(0.39rem + 0.22vw), 0.56rem);
+  --space-xs: clamp(0.69rem, calc(0.62rem + 0.33vw), 0.88rem);
+  --space-s: clamp(0.88rem, calc(0.79rem + 0.43vw), 1.13rem);
+  --space-m: clamp(1.31rem, calc(1.18rem + 0.65vw), 1.69rem);
+  --space-l: clamp(1.75rem, calc(1.58rem + 0.87vw), 2.25rem);
+  --space-xl: clamp(2.63rem, calc(2.36rem + 1.30vw), 3.38rem);
+  --space-2xl: clamp(3.50rem, calc(3.15rem + 1.74vw), 4.50rem);
+  --space-3xl: clamp(5.25rem, calc(4.73rem + 2.61vw), 6.75rem);
+  --space-4xl: clamp(7.00rem, calc(6.30rem + 3.48vw), 9.00rem);
+  --space-5xl: clamp(9.63rem, calc(8.67rem + 4.78vw), 12.38rem);
+  --space-6xl: clamp(12.25rem, calc(11.03rem + 6.09vw), 15.75rem);
+
+  --space-3xs-2xs: clamp(0.25rem, calc(0.14rem + 0.54vw), 0.56rem);
+  --space-2xs-xs: clamp(0.44rem, calc(0.29rem + 0.76vw), 0.88rem);
+  --space-xs-s: clamp(0.69rem, calc(0.54rem + 0.76vw), 1.13rem);
+  --space-s-m: clamp(0.88rem, calc(0.59rem + 1.41vw), 1.69rem);
+  --space-m-l: clamp(1.31rem, calc(0.99rem + 1.63vw), 2.25rem);
+  --space-l-xl: clamp(1.75rem, calc(1.18rem + 2.83vw), 3.38rem);
+  --space-xl-2xl: clamp(2.63rem, calc(1.97rem + 3.26vw), 4.50rem);
+  --space-2xl-3xl: clamp(3.50rem, calc(2.37rem + 5.65vw), 6.75rem);
+  --space-3xl-4xl: clamp(5.25rem, calc(3.95rem + 6.52vw), 9.00rem);
+  --space-4xl-5xl: clamp(7.00rem, calc(5.13rem + 9.35vw), 12.38rem);
+  --space-5xl-6xl: clamp(9.63rem, calc(7.49rem + 10.65vw), 15.75rem);
+
+  --space-s-l: clamp(0.88rem, calc(0.40rem + 2.39vw), 2.25rem);
+  --space-s-xl: clamp(0.88rem, calc(0.01rem + 4.35vw), 3.38rem);
+  --space-2xl-6xl: clamp(3.50rem, calc(-0.76rem + 21.30vw), 15.75rem);
+}
+
+svg .line-hero {
+  fill:none;
+  stroke:currentColor;
+  stroke-width:2;
+  stroke-linejoin:round;
+  stroke-miterlimit:10;
+}
+
+body {
+  color: var(--fg-color);
+  background-color: var(--bg-color);
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto, Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  font-size: var(--step-0);
+  font-weight: 300;
+}
+
+h1 { color: var(--secondary-fg-color); font-size: var(--step-5); font-weight: 500; margin: 0; }
+h2 { color: var(--secondary-fg-color); font-size: var(--step-3); font-weight: 300; margin: 0; }
+h3 { color: var(--secondary-fg-color); font-size: var(--step-1); font-weight: 500; margin: 0; }
+
+p { margin: 0; }
+p:not(:first-of-type) { margin-top: var(--space-s); }
+
+a { color: var(--secondary-fg-color); transition: color var(--transition); text-decoration: none; }
+a:active, a:hover, a:focus { color: var(--highlight); text-decoration: underline; }
+
+small { font-size: var(--step--1); }
+
+figure { margin: 0; }
+figcaption { font-size: var(--step--1); text-align: center; }
+
+ul, ul li {
+  margin: 0;
+  padding: 0;
+  text-indent: 0;
+  list-style-type: none;
+}
+
+header, footer, section {
+  max-width: 70rem;
+  padding-inline: var(--space-s-l);
+  margin-top: var(--space-s-xl);
+  margin-inline: auto;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  flex-wrap: wrap;
+  gap: var(--space-s-l);
+}
+
+.c-header-links {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
+  margin-left: var(--space-2xs);
+}
+
+.c-header-links > * {
+  display: flex;
+  gap: var(--space-2xs);
+  align-items: center;
+}
+
+.c-header-links svg {
+  position: relative;
+  top: 0px;
+}
+
+section h2 {
+  padding-bottom: var(--space-2xs-xs);
+  margin-bottom: var(--space-s-xl);
+  text-align: center;
+  border-bottom: 1px dashed var(--stroke);
+}
+
+section p { text-align: justify; }
+section a, footer p a { font-style: italic; }
+
+section > ul > li:not(:first-of-type) {
+  margin-top: var(--space-s-xl);
+}
+
+.u-split {
+  display: grid;
+  gap: var(--space-s-xl);
+}
+
+.u-split-20-80 { grid-template-columns: 20% 1fr; }
+.u-split-80-20 { grid-template-columns: 1fr minmax(20%, min-content); }
+
+.c-details img {
+  display: block;
+  margin: var(--space-s) auto;
+}
+
+.c-technologies {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2xs-xs);
+}
+
+@media screen and (max-width: 768px) {
+  .u-split {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .c-details {
+    width: 100%;
+    text-align: center;
+  }
+
+  .c-technologies {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+footer {
+  font-size: var(--step--1);
+  margin-bottom: var(--space-s-xl);
+}
+
+.c-credits {
+  border-top: 1px dashed var(--stroke);
+  width: 100%;
+  font-size: var(--step--2);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: var(--space-2xs);
+  margin-bottom: var(--space-s);
+}
+
+.c-about-this-page {
+  display: flex;
+  gap: var(--space-2xs);
+  align-items: center;
+}

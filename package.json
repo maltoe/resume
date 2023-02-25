@@ -3,9 +3,10 @@
   "version": "2.0.0",
   "description": "static resume page with encrypted content",
   "private": true,
-  "main": "index.js",
   "scripts": {
-    "build": "webpack"
+    "build": "webpack",
+    "serve": "webpack serve",
+    "open": "firefox http://localhost:8080/#$(jq -r '.keys[0]' < secrets.crypt.json)"
   },
   "repository": {
     "type": "git",
@@ -18,20 +19,13 @@
     "url": "https://github.com/maltoe/resume/issues"
   },
   "homepage": "https://github.com/maltoe/resume#readme",
-  "dependencies": {
-    "crypto-js": "^3.1.9-1",
-    "handlebars": "^4.0.11"
-  },
   "devDependencies": {
-    "copy-webpack-plugin": "^4.5.1",
-    "css-loader": "^0.28.11",
-    "file-loader": "^1.1.11",
-    "handlebars-loader": "^1.7.0",
-    "json-loader": "^0.5.7",
-    "node-sass": "^4.9.0",
-    "sass-loader": "^7.0.3",
-    "style-loader": "^0.21.0",
-    "webpack": "^4.12.0",
-    "webpack-cli": "^3.0.6"
+    "copy-webpack-plugin": "^11.0.0",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1"
+  },
+  "dependencies": {
+    "arraybuffer-encoding": "^1.1.0"
   }
 }

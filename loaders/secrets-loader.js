@@ -1,34 +1,51 @@
-var CryptoJS = require("crypto-js");
+const fs = require('node:fs');
+const crypto = require('node:crypto').webcrypto;
+const base64 = require('arraybuffer-encoding/base64/url');
 
-// https://www.thepolyglotdeveloper.com/2015/03/create-a-random-nonce-string-using-javascript/
-var randomString = function(length) {
-  var text = "";
-  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  for(var i = 0; i < length; i++) {
-    text += possible.charAt(Math.floor(Math.random() * possible.length));
-  }
-  return text;
+const algorithm = 'AES-CBC'
+
+const encodeText = (data) => new TextEncoder().encode(data);
+
+const importKey = async (key) => {
+  const buffer = base64.Decode(key);
+  return await crypto.subtle.importKey('raw', buffer, { name: algorithm }, true, ['encrypt', 'decrypt']);
 }
 
-module.exports = function(source) {
-  secrets = JSON.parse(source);
+const exportKey = async (key) => {
+  const buffer = await crypto.subtle.exportKey('raw', key);
+  return base64.Encode(buffer);
+}
 
-  let content_key       = randomString(64);
-  let content_json      = JSON.stringify(secrets.content);
-  let content_encrypted = CryptoJS.AES.encrypt(content_json, content_key).toString();
+const generateKey = async () => {
+  const key = await crypto.subtle.generateKey({ name: algorithm, length: 256}, true, ['encrypt', 'decrypt']);
+  return await exportKey(key);
+}
 
-  let envelopes = secrets.keys.map(function(client_key) {
-    let content_key_encrypted = CryptoJS.AES.encrypt(content_key, client_key).toString();
-    let hmac = CryptoJS.HmacSHA256(content_key_encrypted, CryptoJS.SHA256(client_key)).toString();
+const generateIv = () => {
+  return crypto.getRandomValues(new Uint8Array(16));
+}
 
-    return {
-      "key": content_key_encrypted,
-      "hmac": hmac
-    };
-  });
+const encrypt = async (data, b64Key) => {
+  const key = await importKey(b64Key);
+  const iv = generateIv();
 
-  return {
-    "content": content_encrypted,
-    "envelopes": envelopes
-  };
+  const encoded = encodeText(data);
+  const encrypted = await crypto.subtle.encrypt({ iv, name: algorithm }, key, encoded);
+
+  return { encrypted: base64.Encode(encrypted), iv: base64.Encode(iv) };
+};
+
+module.exports = async function(source) {
+  const { secretsPath } = this.getOptions();
+  const secrets = JSON.parse(fs.readFileSync(secretsPath, { encoding: 'utf8' }));
+
+  const secretKey = await generateKey();
+  const content = await encrypt(source, secretKey);
+
+  const envelopes =
+    await Promise.all(
+      secrets['keys'].map(async (key) => await encrypt(secretKey, key))
+    );
+
+  return JSON.stringify({ content, envelopes });
 }
