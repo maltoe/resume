@@ -105,7 +105,7 @@ ul, ul li {
 }
 
 header, footer, section {
-  max-width: 70rem;
+  max-width: 62.5rem;
   padding-inline: var(--space-s-l);
   margin-top: var(--space-s-xl);
   margin-inline: auto;
