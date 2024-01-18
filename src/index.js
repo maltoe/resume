@@ -1,6 +1,7 @@
 import contentJson from './content.crypt.html'
 import settingsJson from './settings.crypt.json'
 import * as base64 from 'arraybuffer-encoding/base64/url'
+import './components'
 
 const algorithm = 'AES-CBC';
 
