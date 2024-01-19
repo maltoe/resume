@@ -221,6 +221,7 @@ class ResumeSectionHeader extends LitElement {
 
     .intro {
       margin-inline: var(--space-m);
+      font-weight: 500;
     }
   `;
 
