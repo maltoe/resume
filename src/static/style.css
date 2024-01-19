@@ -113,7 +113,7 @@ footer {
 }
 
 .text-center { text-align: center; }
-.initial-2 { initial-letter: 2; }
+.initial-2::first-letter { font-size: 200%; }
 
 .c-header-links {
   display: flex;
@@ -147,6 +147,6 @@ footer {
 
 .c-about-this-page {
   display: flex;
-  gap: var(--space-2xs);
+  gap: var(--space-s-m);
   align-items: center;
 }
