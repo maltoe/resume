@@ -148,6 +148,7 @@ footer {
 .c-technologies {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: var(--space-2xs-xs);

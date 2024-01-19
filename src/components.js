@@ -20,18 +20,12 @@ class ResumeRow extends LitElement {
     .row {
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-between;
+      justify-content: center;
       gap: var(--space-s-xl);
     }
 
-    @media screen and (max-width: 768px) {
-      .row {
-        flex-direction: column;
-      }
-
-      .row > * + * {
-        margin-block: 1em;
-      }
+    .row > :first-child {
+      flex-grow: 1;
     }
   `
 
@@ -40,8 +34,8 @@ class ResumeRow extends LitElement {
   render() {
     return html`
       <div class="row">
-        <slot name="left"></slot>
-        <slot name="right"></slot>
+        <div><slot name="left"></slot></div>
+        <div><slot name="right"></slot></div>
       </div>
     `;
   }
