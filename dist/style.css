@@ -2,7 +2,7 @@
  * CREDITS:
  *
  * Color scheme from Happy Hues
- * @link https://www.happyhues.co/palettes/8
+ * @link https://www.happyhues.co/palettes/9
  *
  * Fluid font steps and spaces from Utopia.
  * @link https://utopia.fyi
@@ -11,21 +11,31 @@
  */
 
 :root {
+  /*
   --bg-color: #f8f5f2;
   --fg-color: #222525;
-
   --secondary-fg-color: #232323;
-
   --button-bg-color: #078080;
   --button-fg-color: #232323;
-
   --stroke: #232323;
   --main: #fffffe;
   --highlight: #078080;
   --secondary: #f45d48;
   --tertiary: #f8f5f2;
+  */
 
-  --transition: 150ms ease;
+
+  --bg-color: #eff0f3;
+  --fg-color: #2a2a2a;
+  --light-bg-color: #fafafb;
+  --highlight-color: #ff8e3c;
+  --stroke-color: #0d0d0d;
+  --secondary-color: #f45d48;
+
+  --transition-duration: 150ms;
+  --transition: var(--transition-duration) ease;
+
+  --border: 2px dashed var(--stroke-color);
 
   --step--2: clamp(0.61rem, calc(0.57rem + 0.20vw), 0.72rem);
   --step--1: clamp(0.73rem, calc(0.67rem + 0.30vw), 0.90rem);
@@ -66,14 +76,6 @@
   --space-2xl-6xl: clamp(3.50rem, calc(-0.76rem + 21.30vw), 15.75rem);
 }
 
-svg .line-hero {
-  fill:none;
-  stroke:currentColor;
-  stroke-width:2;
-  stroke-linejoin:round;
-  stroke-miterlimit:10;
-}
-
 body {
   color: var(--fg-color);
   background-color: var(--bg-color);
@@ -86,23 +88,19 @@ h1 { color: var(--secondary-fg-color); font-size: var(--step-5); font-weight: 50
 h2 { color: var(--secondary-fg-color); font-size: var(--step-3); font-weight: 300; margin: 0; }
 h3 { color: var(--secondary-fg-color); font-size: var(--step-1); font-weight: 500; margin: 0; }
 
-p { margin: 0; }
-p:not(:first-of-type) { margin-top: var(--space-s); }
-
-a { color: var(--secondary-fg-color); transition: color var(--transition); text-decoration: none; }
-a:active, a:hover, a:focus { color: var(--highlight); text-decoration: underline; }
-
 small { font-size: var(--step--1); }
 
 figure { margin: 0; }
 figcaption { font-size: var(--step--1); text-align: center; }
 
-ul, ul li {
+ul {
   margin: 0;
   padding: 0;
   text-indent: 0;
   list-style-type: none;
 }
+
+p { text-align: justify; }
 
 header, footer, section {
   max-width: 70rem;
@@ -111,20 +109,20 @@ header, footer, section {
   margin-inline: auto;
 }
 
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
-  flex-wrap: wrap;
-  gap: var(--space-s-l);
+footer {
+  font-size: var(--step--1);
+  margin-bottom: var(--space-s-xl);
 }
+
+.text-center { text-align: center; }
+.initial-2::first-letter { font-size: 200%; }
 
 .c-header-links {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   gap: var(--space-2xs);
-  margin-left: var(--space-2xs);
+  line-height: 0.5;
 }
 
 .c-header-links > * {
@@ -133,81 +131,30 @@ header {
   align-items: center;
 }
 
-.c-header-links svg {
-  position: relative;
-  top: 0px;
-}
-
-section h2 {
-  padding-bottom: var(--space-2xs-xs);
-  margin-bottom: var(--space-s-xl);
-  text-align: center;
-  border-bottom: 1px dashed var(--stroke);
-}
-
-section p { text-align: justify; }
-section a, footer p a { font-style: italic; }
-
-section > ul > li:not(:first-of-type) {
+.c-entry-list > li + li {
   margin-top: var(--space-s-xl);
 }
 
-.u-split {
-  display: grid;
-  gap: var(--space-s-xl);
+.c-skills {
+  margin-inline-start: var(--space-s);
+  list-style-type: '✓';
+  list-style-position: outside;
 }
 
-.u-split-20-80 { grid-template-columns: 20% 1fr; }
-.u-split-80-20 { grid-template-columns: 1fr minmax(20%, min-content); }
-
-.c-details img {
-  display: block;
-  margin: var(--space-s) auto;
-}
+.c-skills > li { padding-inline-start: var(--space-2xs); }
+.c-skills > li::marker { font-weight: bold; }
+.c-skills > li + li { margin-block-start: var(--space-s); }
 
 .c-technologies {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-2xs-xs);
-}
-
-@media screen and (max-width: 768px) {
-  .u-split {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .c-details {
-    width: 100%;
-    text-align: center;
-  }
-
-  .c-technologies {
-    flex-direction: row;
-    justify-content: center;
-  }
-}
-
-footer {
-  font-size: var(--step--1);
-  margin-bottom: var(--space-s-xl);
-}
-
-.c-credits {
-  border-top: 1px dashed var(--stroke);
-  width: 100%;
-  font-size: var(--step--2);
-  display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  gap: var(--space-2xs);
-  margin-bottom: var(--space-s);
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2xs-xs);
 }
 
 .c-about-this-page {
   display: flex;
-  gap: var(--space-2xs);
+  gap: var(--space-s-m);
   align-items: center;
 }
