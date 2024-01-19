@@ -209,13 +209,12 @@ class ResumeSectionHeader extends LitElement {
 
     h2 {
       text-align: center;
-      padding-bottom: var(--space-2xs-xs);
-      border-bottom: var(--border);
+      padding-top: var(--space-2xs-xs);
+      border-top: var(--border);
     }
 
     .intro {
       margin-inline: var(--space-m);
-      font-weight: 500;
     }
   `;
 
