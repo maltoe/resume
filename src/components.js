@@ -20,20 +20,20 @@ class ResumeRow extends LitElement {
     .row {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
       gap: var(--space-s-xl);
     }
 
-    .row > :first-child {
-      flex-grow: 1;
-    }
+    .row > :first-child { flex-grow: 1; }
   `
 
-  static properties = {};
+  static properties = {
+    justify: { type: String },
+  };
 
   render() {
+    const justify = this.justify || 'center';
     return html`
-      <div class="row">
+      <div class="row" style="justify-content: ${justify};">
         <div><slot name="left"></slot></div>
         <div><slot name="right"></slot></div>
       </div>
