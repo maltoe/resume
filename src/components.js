@@ -1,4 +1,5 @@
 import {html, css, LitElement} from 'lit';
+import '@zachleat/details-utils';
 
 const baseStyles = {
   listReset: css`
@@ -178,25 +179,29 @@ class ResumeEntry extends LitElement {
   render() {
     return html`
       <div class="entry">
-        <details>
-          <summary>
-            <resume-row>
-              <div slot="left">
-                <h3>${this.caption}</h3>
-                <ul class="small">
-                  <li>${this['subcaption']}</li>
-                  <li>${this.period}</li>
-                  <li><resume-link href="${this['link-href']}">${this['link-caption']}</resume-link></li>
-                </ul>
-              </div>
-              <div slot="right">
-                <slot name="right"></slot>
-              </div>
-            </resume-row>
-            <p>${this.teaser}</p>
-          </summary>
-          <div><slot></slot></div>
-        </details>
+        <details-utils force-open="print">
+          <details>
+            <summary>
+              <resume-row>
+                <div slot="left">
+                  <h3>${this.caption}</h3>
+                  <ul class="small">
+                    <li>${this['subcaption']}</li>
+                    <li>${this.period}</li>
+                    <li><resume-link href="${this['link-href']}">${this['link-caption']}</resume-link></li>
+                  </ul>
+                </div>
+                <div slot="right">
+                  <slot name="right"></slot>
+                </div>
+              </resume-row>
+              <p>${this.teaser}</p>
+            </summary>
+            <div>
+              <slot></slot>
+            </div>
+          </details>
+        </details-utils>
       </div>
     `;
   }

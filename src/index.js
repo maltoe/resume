@@ -46,7 +46,7 @@ const findKeyFromEnvelopes = async (envelopes, key) => {
 };
 
 const noAccess = () => {
-  document.getElementById("content").innerHTML = "<p>Decoding failure. Please provide password using fragment identifier.</p>";
+  document.getElementById("content").innerHTML = "<section><p>Decoding failure. Please provide password using fragment identifier.</p></section>";
 };
 
 window.addEventListener('load', async () => {

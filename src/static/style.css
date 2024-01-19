@@ -32,7 +32,9 @@
   --stroke-color: #0d0d0d;
   --secondary-color: #f45d48;
 
-  --transition: 150ms ease;
+  --transition-duration: 150ms;
+  --transition: var(--transition-duration) ease;
+
   --border: 2px dashed var(--stroke-color);
 
   --step--2: clamp(0.61rem, calc(0.57rem + 0.20vw), 0.72rem);
@@ -91,7 +93,7 @@ small { font-size: var(--step--1); }
 figure { margin: 0; }
 figcaption { font-size: var(--step--1); text-align: center; }
 
-ul, ul li {
+ul {
   margin: 0;
   padding: 0;
   text-indent: 0;
@@ -133,9 +135,15 @@ footer {
   margin-top: var(--space-s-xl);
 }
 
-.c-skills > li + li {
-  margin-top: var(--space-s);
+.c-skills {
+  margin-inline-start: var(--space-s);
+  list-style-type: '✓';
+  list-style-position: outside;
 }
+
+.c-skills > li { padding-inline-start: var(--space-2xs); }
+.c-skills > li::marker { font-weight: bold; }
+.c-skills > li + li { margin-block-start: var(--space-s); }
 
 .c-technologies {
   display: flex;
