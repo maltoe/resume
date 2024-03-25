@@ -6,7 +6,8 @@
   "scripts": {
     "build": "webpack",
     "serve": "webpack serve",
-    "open": "firefox http://localhost:8080/#$(jq -r '.keys[0]' < secrets.crypt.json)"
+    "open": "firefox http://localhost:8080/#$(jq -r '.keys[0]' < secrets.crypt.json)",
+    "url": "echo https://maltoe.github.io/resume/index.html#$(jq -r '.keys[0]' < secrets.crypt.json)"
   },
   "repository": {
     "type": "git",
